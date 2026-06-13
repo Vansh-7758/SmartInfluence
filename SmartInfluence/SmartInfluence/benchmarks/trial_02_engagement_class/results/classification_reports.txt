@@ -1,0 +1,165 @@
+
+============================================================
+Model: XGBoost
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.97      0.97      0.97       791
+   Low Engagement       0.97      0.98      0.98       662
+Medium Engagement       0.94      0.94      0.94       574
+
+         accuracy                           0.96      2027
+        macro avg       0.96      0.96      0.96      2027
+     weighted avg       0.96      0.96      0.96      2027
+
+AUC-ROC: 0.9970007657907889
+
+============================================================
+Model: CatBoost
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.97      0.97      0.97       791
+   Low Engagement       0.97      0.97      0.97       662
+Medium Engagement       0.92      0.94      0.93       574
+
+         accuracy                           0.96      2027
+        macro avg       0.96      0.96      0.96      2027
+     weighted avg       0.96      0.96      0.96      2027
+
+AUC-ROC: 0.9950906745598145
+
+============================================================
+Model: Random Forest
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.95      0.96      0.96       791
+   Low Engagement       0.96      0.96      0.96       662
+Medium Engagement       0.90      0.90      0.90       574
+
+         accuracy                           0.94      2027
+        macro avg       0.94      0.94      0.94      2027
+     weighted avg       0.94      0.94      0.94      2027
+
+AUC-ROC: 0.9936540156349767
+
+============================================================
+Model: SVM (RBF)
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.97      0.95      0.96       791
+   Low Engagement       0.99      0.95      0.97       662
+Medium Engagement       0.88      0.95      0.92       574
+
+         accuracy                           0.95      2027
+        macro avg       0.95      0.95      0.95      2027
+     weighted avg       0.95      0.95      0.95      2027
+
+AUC-ROC: 0.9927540715052952
+
+============================================================
+Model: SVM (Linear)
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.99      0.99      0.99       791
+   Low Engagement       0.99      0.98      0.99       662
+Medium Engagement       0.97      0.98      0.97       574
+
+         accuracy                           0.98      2027
+        macro avg       0.98      0.98      0.98      2027
+     weighted avg       0.98      0.98      0.98      2027
+
+AUC-ROC: 0.9980930686915385
+
+============================================================
+Model: Logistic Regression
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.99      0.98      0.99       791
+   Low Engagement       0.99      0.98      0.98       662
+Medium Engagement       0.94      0.99      0.97       574
+
+         accuracy                           0.98      2027
+        macro avg       0.98      0.98      0.98      2027
+     weighted avg       0.98      0.98      0.98      2027
+
+AUC-ROC: 0.9970848635711259
+
+============================================================
+Model: KNN
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.71      0.81      0.76       791
+   Low Engagement       0.77      0.77      0.77       662
+Medium Engagement       0.53      0.43      0.47       574
+
+         accuracy                           0.69      2027
+        macro avg       0.67      0.67      0.67      2027
+     weighted avg       0.68      0.69      0.68      2027
+
+AUC-ROC: 0.8544830213773332
+
+============================================================
+Model: Decision Tree
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.94      0.95      0.95       791
+   Low Engagement       0.95      0.97      0.96       662
+Medium Engagement       0.90      0.86      0.88       574
+
+         accuracy                           0.93      2027
+        macro avg       0.93      0.93      0.93      2027
+     weighted avg       0.93      0.93      0.93      2027
+
+AUC-ROC: 0.9533565079341897
+
+============================================================
+Model: Gradient Boosting
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.98      0.96      0.97       791
+   Low Engagement       0.96      0.97      0.97       662
+Medium Engagement       0.92      0.93      0.92       574
+
+         accuracy                           0.96      2027
+        macro avg       0.95      0.95      0.95      2027
+     weighted avg       0.96      0.96      0.96      2027
+
+AUC-ROC: 0.99510779658665
+
+============================================================
+Model: LightGBM
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.98      0.97      0.98       791
+   Low Engagement       0.97      0.98      0.97       662
+Medium Engagement       0.94      0.94      0.94       574
+
+         accuracy                           0.96      2027
+        macro avg       0.96      0.96      0.96      2027
+     weighted avg       0.96      0.96      0.96      2027
+
+AUC-ROC: 0.9975942369547878
+
+============================================================
+Model: MLP Neural Network
+============================================================
+                   precision    recall  f1-score   support
+
+  High Engagement       0.96      0.99      0.98       791
+   Low Engagement       0.97      0.98      0.98       662
+Medium Engagement       0.97      0.91      0.94       574
+
+         accuracy                           0.97      2027
+        macro avg       0.97      0.96      0.96      2027
+     weighted avg       0.97      0.97      0.97      2027
+
+AUC-ROC: 0.9967948187450771

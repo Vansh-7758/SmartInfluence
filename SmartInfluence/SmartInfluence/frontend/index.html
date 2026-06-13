@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartInfluence — Predictive Influencer Discovery & ROI Planning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jsPDF and AutoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <div class="background-elements"></div>
+
+    <main class="container">
+        <header>
+            <h1>Smart<span>Influence</span></h1>
+            <p>Predictive Influencer Discovery Platform & Campaign ROI Optimizer</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="predict-tab">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                Discovery Tool
+            </button>
+            <button class="tab-btn" data-tab="roster-tab" id="btn-roster">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <polyline points="17 11 19 13 23 9"></polyline>
+                </svg>
+                Campaign Roster <span id="roster-count" style="display:none;" class="badge">0</span>
+            </button>
+        </div>
+
+        <!-- Discovery Tab -->
+        <div id="predict-tab" class="tab-content active">
+            <section class="search-section card-panel">
+                <form id="predict-form">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="brand_name">Brand Name</label>
+                            <div class="input-wrapper">
+                                <div class="input-icon">
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                    </svg>
+                                </div>
+                                <input type="text" id="brand_name" placeholder="e.g. Gymshark" required>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="niches">Target Niches (Comma separated)</label>
+                            <div class="input-wrapper">
+                                <div class="input-icon">
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                        <polyline points="2 17 12 22 22 17"></polyline>
+                                        <polyline points="2 12 12 17 22 12"></polyline>
+                                    </svg>
+                                </div>
+                                <input type="text" id="niches" placeholder="e.g. fitness, apparel, lifestyle" required>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group full-width">
+                            <label for="brand_desc">Brand Context & Aesthetic Positioning (Optional)</label>
+                            <textarea id="brand_desc" rows="2" placeholder="Briefly describe the brand theme, audience targets, and context for TF-IDF similarity mapping..."></textarea>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="top_n">Result Limit</label>
+                            <div class="input-wrapper">
+                                <div class="input-icon">
+                                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                    </svg>
+                                </div>
+                                <input type="number" id="top_n" value="10" min="1" max="50">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="btn-primary">
+                        <span>Discover Influencers</span>
+                        <div class="spinner" id="loading-spinner"></div>
+                    </button>
+                </form>
+            </section>
+
+            <section id="results-section" class="hidden">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <h2>Top Recommendations</h2>
+                        <div class="status-badge">Predicted High Performers</div>
+                    </div>
+                    <button id="export-pdf-btn" class="btn-secondary">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Export Report PDF
+                    </button>
+                </div>
+                <div id="main-results" class="results-grid"></div>
+
+                <div class="section-header mt-8">
+                    <div class="section-title-wrap">
+                        <h2>Alternative Recommendations</h2>
+                        <div class="status-badge secondary">High Engagement Gems</div>
+                    </div>
+                </div>
+                <div id="hidden-results" class="results-grid"></div>
+            </section>
+        </div>
+
+        <!-- Campaign Roster Tab -->
+        <div id="roster-tab" class="tab-content">
+            <div class="metrics-container" id="roster-metrics">
+                <div class="performance-metric-card">
+                    <div class="pm-label">Saved Creators</div>
+                    <div class="pm-value" id="roster-total-count">0</div>
+                </div>
+                <div class="performance-metric-card">
+                    <div class="pm-label">Est. Campaign Reach</div>
+                    <div class="pm-value" id="roster-total-reach">0</div>
+                </div>
+                <div class="performance-metric-card">
+                    <div class="pm-label">Avg Engagement Rate</div>
+                    <div class="pm-value" id="roster-avg-eng">0.00%</div>
+                </div>
+            </div>
+
+            <div class="section-header mt-8">
+                <div class="section-title-wrap">
+                    <h2>Shortlisted Influencers</h2>
+                </div>
+                <button id="clear-roster-btn" class="btn-secondary" style="color: var(--danger); border-color: rgba(239, 68, 68, 0.2);">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    Clear Roster
+                </button>
+            </div>
+            
+            <div id="roster-results" class="results-grid">
+                <div class="empty-state">Your roster is empty. Go to the Discovery Tool to add influencers!</div>
+            </div>
+        </div>
+
+
+
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

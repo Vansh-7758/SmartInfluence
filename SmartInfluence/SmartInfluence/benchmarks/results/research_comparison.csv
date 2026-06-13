@@ -1,0 +1,20 @@
+paper,model,metric,value,dataset,year
+Data Profiling (Bahaa et al.),Random Forest,Precision,93.15,Social network (w/o tweet),2021
+Data Profiling (Bahaa et al.),Decision Tree,Precision,92.66,Social network (w/o tweet),2021
+Data Profiling (Bahaa et al.),Logistic Regression,Precision,92.23,Social network (w/o tweet),2021
+Data Profiling (Bahaa et al.),Neural Network,Accuracy,84.0,Social network (w/ tweet),2021
+Data Profiling (Bahaa et al.),Random Forest,Accuracy,84.52,Social network (w/ tweet),2021
+Intelligent Marketing (KBS),KoELECTRA (Transformer),Accuracy,94.94,Korean SNS posts,2024
+Intelligent Marketing (KBS),KoBERT,Accuracy,90.57,Korean SNS posts,2024
+Intelligent Marketing (KBS),BERT-M,Accuracy,73.4,Korean SNS posts,2024
+Intelligent Marketing (KBS),DistilKoBERT,Accuracy,84.84,Korean SNS posts,2024
+Elsevier Micro-Influencer,Random Forest (tuned),RMSE,1.5,Instagram micro-influencers,2025
+Elsevier Micro-Influencer,ResNet+BERT,AUC,81.0,Instagram micro-influencers,2025
+Kim et al. (WWW 2020),BERT + Inception-v3,Accuracy,98.0,"33,935 influencers (multimodal)",2020
+Bashari & Fazl-Ersi (2020),SVM (RBF kernel),Accuracy,83.64,"3,787 Instagram users (content-only)",2020
+Rashid & Bhat Survey (2023),RF-GBDT Hybrid,Accuracy,96.7,Review (topological features),2023
+Fake Profile Detection (2023),XGBoost+RF+SMOTE,Accuracy,98.24,Instagram profiles,2023
+Fake Profile Detection (2023),Random Forest standalone,Accuracy,91.76,Instagram profiles,2023
+Enhanced Influencer Profiler (2025),EfficientNet+BERT+GPT,Accuracy,99.62,"~33,935 influencers (multimodal)",2025
+Enhanced Influencer Profiler (2025),Random Forest (baseline),Accuracy,76.25,"~33,935 influencers",2025
+Enhanced Influencer Profiler (2025),SVC (baseline),Accuracy,71.6,"~33,935 influencers",2025
